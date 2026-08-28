@@ -56,8 +56,8 @@ parrot_config2 = {
     #"buzz": ('start drag', lambda : actions.user.consistent_input_event_start("buzz_test")),
     #"buzz_stop": ('end drag', lambda : actions.user.consistent_input_event_stop("buzz_test")), 
     # "eh eh": ('test',lambda: print('hello this is another test')),
-    #"palate_click:th_150": ('left click', lambda: click_or_release()),
-    #"alveolar_click:th_150": ('drag toggle', lambda : actions.user.mouse_drag_toggle(0)),
+   # "palate_click:th_150": ('left click', lambda: click_or_release()),
+  #  "alveolar_click:th_150": ('drag toggle', lambda : actions.user.mouse_drag_toggle(0)),
     # "ah": ('testing', lambda : print("testing")),
 
 }

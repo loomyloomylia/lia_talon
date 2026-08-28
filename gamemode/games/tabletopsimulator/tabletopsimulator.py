@@ -4,6 +4,7 @@ ctx = Context()
 ctx.matches = """
 mode: user.game
 user.active_manual_game: tabletopsimulator
+not hostname: LiaBox2
 """
 
 parrot_config = {
@@ -117,6 +118,22 @@ class TabletopActions:
         """"""
         global joystick_state
         joystick_state = not joystick_state
+
+ctx2 = Context()
+ctx2.matches = """
+mode: user.game
+and mode: sleep
+user.active_manual_game: tabletopsimulator
+hostname: LiaBox2
+"""
+
+@ctx2.action_class("user")
+class LiaBoxToOnlyActions:
+    def parrot_config():
+        """"""
+        return parrot_config
+        
+    
 
 def mouse_scroll_up():
     actions.user.mouse_scroll_up()

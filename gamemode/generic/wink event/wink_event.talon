@@ -13,7 +13,7 @@ face(blink_left:stop):
     # print("open")
 
 face(blink_right:start):
-    user.event_right_close()z
+    user.event_right_close()
 
 face(blink_right:stop):
     user.event_right_open()
