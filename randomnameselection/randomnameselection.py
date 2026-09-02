@@ -165,8 +165,12 @@ ready_config = {
 
 }
 
+always_on_config = {
+    "clock:th_150": ('he new name', lambda : queue_random_name()),
+}
+
 parrot_config = {
-    "default": waiting_config,
+    "default": always_on_config,
     "ready": ready_config,
     "waiting": waiting_config
 }

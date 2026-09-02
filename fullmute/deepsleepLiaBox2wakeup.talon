@@ -2,7 +2,7 @@ hostname: LiaBox2
 mode: sleep
 tag: user.deep_sleep_enabled
 -
-^rise and shine box two$:
+^(rise and shine box two)|(box one box two switch)$:
     user.disable_deep_sleep()
     speech.enable()
 
