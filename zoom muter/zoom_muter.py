@@ -7,6 +7,8 @@ mod = Module()
 
 from subprocess import Popen
 import subprocess
+__location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
+
 
 def run_batch_file(file_path):
     Popen(file_path,creationflags=subprocess.CREATE_NEW_CONSOLE)
@@ -26,7 +28,7 @@ class Actions:
 
     def kill_zoom():
         """kills that goddamn mother fucking zoom workspace app instead of minimizing to tray"""
-        run_batch_file("C:\\Users\\Lia Hepler Mackey\\AppData\\Roaming\\talon\\user\\LiaStuff\\zoom muter\\killzoom.bat")
+        run_batch_file(os.path.join(__location__, 'killzoom.bat'))
         
 """Okay what the fuck am I going to do
  things I need to do: 

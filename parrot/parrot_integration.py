@@ -11,7 +11,7 @@ from talon.experimental.parrot import ParrotSystem, ParrotDelegate, ParrotFrame
 from talon_init import TALON_HOME
 
 import socket
-foldername  = 'LiaStuff' if socket.gethostname() == "Liabox" else "lia_talon" 
+foldername  = 'lia_talon' if socket.gethostname() == "Liabox" else "lia_talon" 
 
 PARROT_HOME = TALON_HOME /'user' / foldername / 'parrot' 
 pattern_path = str(PARROT_HOME / 'patterns.json')
