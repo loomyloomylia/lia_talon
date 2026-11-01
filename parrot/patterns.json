@@ -34,6 +34,15 @@
 		"sounds": ["tut"],
 		"threshold": {
 			">power": 15,
+			">probability": 0.90},
+		"throttle": {
+			"tut": 0.1
+		}
+	},
+	"tut_game": {
+		"sounds": ["tut"],
+		"threshold": {
+			">power": 8,
 			">probability": 0.80
 		},
 		"throttle": {
@@ -43,7 +52,7 @@
 	"alveolar_click": {
 		"sounds": ["alveolar_click"],
 		"threshold": {
-			">power": 15,
+			">power": 8,
 			">probability": 0.80
 		},
 		"throttle": {
@@ -192,12 +201,12 @@
 	"shush": {
 		"sounds": ["shush"],
 		"threshold": {
-			">power": 10,
+			">power": 5,
 			">probability": 0.90
 		},
 		"graceperiod": 40,
 		"grace_threshold": {
-			">power": 10,
+			">power": 5,
 			">probability": 0.75
 		},
 		"throttle": {

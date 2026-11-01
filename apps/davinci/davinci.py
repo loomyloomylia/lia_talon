@@ -56,6 +56,7 @@ class DavinciOriginalActions:
 @ctx.action_class("user")
 class DavinciActions:
     def parrot_config():
+        print('Davin she is working maybe?')
         return parrot_config
 
     def foot_switch_top_down():
@@ -75,6 +76,7 @@ class DavinciActions:
     def foot_switch_center_up(held: bool):
         """Foot switch button center:up"""
         actions.skip()
+
 
     def foot_switch_left_down():
         """Foot switch button left:down"""

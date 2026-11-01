@@ -250,6 +250,8 @@ class SilksongActions:
     def foot_switch_center_down():
         """Foot switch button center:down"""
         actions.user.button_down("z")
+        print("AAAA")
+
 
     def foot_switch_center_up(held: bool):
         """Foot switch button center:up"""
