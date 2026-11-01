@@ -245,8 +245,8 @@
 	"high_whistle": {
 		"sounds": ["high_whistle"],
 		"threshold": {
-			">power":10,
-			">probability": 0.90
+			">power":7,
+			">probability": 0.8
 		},
 		"graceperiod": 40,
 		"grace_threshold": {

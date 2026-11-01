@@ -1,8 +1,9 @@
-from talon import Module,Context,actions
+from talon import Module,Context,actions,cron
 import random
 from copy import deepcopy
 from pathlib import Path
 from typing import Callable
+from datetime import datetime 
 mod = Module()
 
 mod.tag("random_name_selection_active", "Whether or not my random name selection system is turned on and listening")
@@ -37,8 +38,8 @@ mode:sleep
 and not mode: user.game
 hostname: LiaBox2
 tag: user.random_name_selection_active
-and not tag: user.deep_sleep_enabled
 """
+#and not tag: user.deep_sleep_enabled
 # (command OR [sleep and not game]) and LiaBox2 and tag1 and not tag2
 
 def mode_switch_wrapper(action: Callable, mode: str):
@@ -73,6 +74,16 @@ def random_name_overlay():
             name_row("next"),
             name_row("second"),
             name_row("third"),
+            div(flex_direction = "row", id = f"fourth_row", background_color = "#444444",align_items = "flex_end",  margin_bottom = 0, margin_right = 0, padding = 16, border_width = 1)[
+                # div(flex_direction = "row", background_color="#444444", padding = 16, border_width = 1 )[
+                #     text(f"", id ="", width=SIZE_ONE, font_size = FONT_SIZE)
+                # ],
+                text(f"", id = "time_text", width= SIZE_ONE, font_size = FONT_SIZE )
+                # div(id = "command_name", flex_direction = "column", background_color="#444444", padding = 16, border_width = 1, align_items = "flex_end")[
+                #     text(f"", id = "time_text", width= SIZE_ONE, font_size = FONT_SIZE )
+                # ]
+                # text("", width=SIZE_TWO, id = f"", font_size = FONT_SIZE)
+            ],
         ]
     ]
 
@@ -107,7 +118,7 @@ def populate_ui():
             actions.user.ui_elements_highlight_briefly("next_row", "#338833")
 
     
-        
+cron_job = None       
         
 
 def queue_random_name():
@@ -126,6 +137,13 @@ def queue_random_name():
         used_names = []
     
     populate_ui()
+
+def clear_recent_name_and_queue():
+    global unused_names,used_names
+    if len(queue) == 0:
+        return 
+    queue.pop(len(queue) - 1)
+    queue_random_name()
 
 def dequeue_in_disgrace():
     # index = len(queue) - 1
@@ -149,6 +167,30 @@ def pair_return_generator(func: Callable, func2: Callable):
         
     return lambda : call_pair(func, func2)
     
+def time_update():
+    now = datetime.now()
+    time_text = now.strftime("%H:%M:%S")
+    ref = actions.user.ui_elements(["ref"])
+    time_ref = ref("time_text")
+    time_ref.text = time_text
+
+def wakeup():
+    actions.speech.enable()
+    actions.user.ui_elements_highlight_briefly("all_elements", "#338833")
+
+def go_to_sleep():
+    actions.speech.disable()
+    actions.user.ui_elements_highlight_briefly("all_elements", "#883333")
+
+def toggle_speech():
+    if actions.speech.enabled():
+        actions.user.ui_elements_highlight_briefly("all_elements", "#883333")
+        actions.speech.disable()
+    else:
+        actions.speech.enable()
+        actions.user.ui_elements_highlight_briefly("all_elements", "#338833")
+
+    
 
 """random, name, overlay
 
@@ -167,6 +209,9 @@ ready_config = {
 
 always_on_config = {
     "clock:th_150": ('he new name', lambda : queue_random_name()),
+    "palate_click:th_150": ('deco in disgrace', lambda : clear_recent_name_and_queue()),
+    "tut:th_150": ('pointer mode', lambda : actions.user.button("1")),
+    #"alveolar_click:th_150": ('toggle speech', lambda : toggle_speech()),
 }
 
 parrot_config = {
@@ -187,7 +232,7 @@ class RandomNameActions:
     def reset_random_name_overlay():
         """"""
         global queue, name_list, unused_names, used_names
-        actions.user.ui_elements_hide(random_name_overlay)
+        actions.user.hide_random_name_overlay()
         queue = []
         unused_names = deepcopy(name_list)
         used_names = []
@@ -201,12 +246,22 @@ class RandomNameActions:
 
     def show_random_name_overlay():
         """"""
+        global cron_job
         actions.user.ui_elements_show(random_name_overlay)
         actions.user.load_random_name_list()
         ctx.tags = ["user.random_name_selection_active", "user.parrot_active"]
+        if cron_job is None:
+            cron_job = cron.interval(f"1000ms", time_update)
+
 
     def hide_random_name_overlay():
         """"""
+        global cron_job
         actions.user.ui_elements_hide(random_name_overlay)
         ctx.tags = []
+        if cron_job is not None:
+            cron.cancel(cron_job)
+            cron_job = None
+            
+
     

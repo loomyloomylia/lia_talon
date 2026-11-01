@@ -10,3 +10,9 @@ bring <user.running_applications>:
 banish <user.running_applications>:
     user.switcher_focus(running_applications)
     user.move_window_to_screen(2)
+
+empty braille:
+    insert("⠀") 
+
+pink (flour|flower):
+    insert("🌸")

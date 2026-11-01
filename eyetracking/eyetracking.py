@@ -59,6 +59,8 @@ parrot_config2 = {
    # "palate_click:th_150": ('left click', lambda: click_or_release()),
   #  "alveolar_click:th_150": ('drag toggle', lambda : actions.user.mouse_drag_toggle(0)),
     # "ah": ('testing', lambda : print("testing")),
+    "palate_click:th_150": ('left click', lambda: actions.edit.paste()),
+    "alveolar_click:th_150": ('drag toggle', lambda : actions.edit.copy()),
 
 }
 

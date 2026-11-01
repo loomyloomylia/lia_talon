@@ -1,13 +1,15 @@
-from talon import Context,Module
+from talon import Context,Module,actions
 from ....community.lang.tags.operators import Operators
 
-# ctx = Context()
-# ctx.matches = """
-# app: obsidian
-# hostname: LiaBox2
-# """
+ctx = Context()
+ctx.matches = """
+app: obsidian
+hostname: LiaBox2
+"""
 
-
+parrot_config = {
+    "tut:th_150": ('press the pointer mode', lambda : actions.user.button("1"))
+}
 # operators = Operators(
 #     MATH_SUBTRACT=" - ",
 #         MATH_ADD=" + ",
@@ -25,6 +27,8 @@ from ....community.lang.tags.operators import Operators
 # )
 
 
-# class ObsidianActions:
-#     def code_get_operators() -> Operators :
-#         return operators
+class ObsidianActions:
+    def parrot_config():
+        return parrot_config
+    # def code_get_operators() -> Operators :
+    #     return operators

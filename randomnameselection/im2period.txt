@@ -6,13 +6,11 @@ Mary Jane
 Alina
 Julian
 Audrey
-Lilliana
-Abraham
+Lilly
 Lanae'
 David
 Julisa
 Ashlynn
-Carter
 Noah
 Iurii
 Cesar
@@ -26,5 +24,6 @@ Abby
 Valerie
 Itzel
 Jeffery
-Charleigh
+Nancy
+Eirik
 Ainara
