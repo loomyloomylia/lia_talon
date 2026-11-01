@@ -23,6 +23,9 @@ settings():
 ^look$:
     key("l")
 
+window close:
+    print("fuck you")
+
 
 
 # ^test foundry$:

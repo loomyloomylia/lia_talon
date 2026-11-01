@@ -1,6 +1,7 @@
 tag: user.parrot_active
+not mode: user.game
 -
-parrot(palate_click_game):
+parrot(palate_click):
     user.parrot_config_noise("palate_click")
 
 parrot(clock):

@@ -1,5 +1,10 @@
 from talon import Context,actions
 
+def repeat_phrase_test():
+    print("testing")
+    actions.core.repeat_phrase(1)
+    
+
 def duke(): 
     actions.mouse_click(0)
     actions.mouse_click(0)
@@ -10,10 +15,14 @@ def click_or_release():
     else:
         actions.user.mouse_button(0) 
 
+
+
+        
+
 parrot_config = {
     # "palate_click": ('left click',lambda: actions.mouse_click(0)),
     "tut:th_150": ('right click',lambda: actions.mouse_click(1)), 
-    "clock:th_150": ('repeat last',lambda: actions.core.repeat_phrase(1)), 
+    "clock:th_150": ('repeat last',lambda: repeat_phrase_test()), 
     # "alveolar_click": ('undue', lambda : duke()),
     "high_whistle:th_150": ('focus', lambda : actions.user.switcher_menu()),
     "buzz": ('start drag', lambda : actions.user.consistent_input_event_start("buzz_test")),
@@ -33,6 +42,8 @@ mode:sleep
 and not mode: user.game
 hostname: Liabox
 """
+
+
 
 @ctx.action_class('user')
 class EyeTrackingParrot:
